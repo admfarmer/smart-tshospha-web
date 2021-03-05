@@ -1,0 +1,45 @@
+
+<div class="main-container">
+  <header class="header-6">
+    <div class="branding">
+      <a href="javascript://" class="nav-link">
+        <clr-icon shape="campervan"></clr-icon>
+        <span class="title">HA Tansum Hospital</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <div class="dropdown bottom-left">
+        <button class="nav-icon dropdown-toggle" aria-label="toggle settings menu" routerLink="/login"  *ngIf = "!fullname">LOGIN </button>
+        <button class="nav-icon dropdown-toggle" aria-label="toggle settings menu" (click)="logOut()" *ngIf = "fullname">LOGOUT</button>
+      </div>
+    </div>
+  </header>
+  <nav class="subnav">
+    <ul class="nav" *ngFor="let c of category">
+      <li class="nav-item">
+        <a class="nav-link" (click)="groupInfo(c)">{{c.category_name}}</a>
+      </li>
+    </ul>
+    <div class="dropdown bottom-left">
+      <button class="nav-icon dropdown-toggle" aria-label="toggle settings menu" *ngIf = "userType == 'ADMIN'">ผู้ดูแลระบบ : {{fullname}}</button>
+      <button class="nav-icon dropdown-toggle" aria-label="toggle settings menu" *ngIf = "userType == 'MEMBER'">บุคลากรโรงพยาบาล : {{fullname}}</button>
+      <button class="nav-icon dropdown-toggle" aria-label="toggle settings menu" *ngIf = "!fullname">ผู้เยียมชม</button>
+    </div>
+
+  </nav>
+  <div class="content-container">
+    <nav class="sidenav">
+        <section class="nav-group">
+          <input id="tabexample2" type="checkbox" />
+          <label for="tabexample2"><h5>{{category_name}}</h5></label>
+          <ul class="nav-list" *ngFor="let g of group">
+            <li><a class="nav-link" (click)="documentsInfo(g)">{{g.group_name}}</a></li>
+          </ul>
+        </section>
+    </nav>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
